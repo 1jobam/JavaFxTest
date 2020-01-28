@@ -1,7 +1,6 @@
 package kr.or.ddit.basic;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 /*
 	Stage(무대) => window창
