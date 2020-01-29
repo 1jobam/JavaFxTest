@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class T07_GirdPaneTest extends Application{
+public class T07_GridPaneTest extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
