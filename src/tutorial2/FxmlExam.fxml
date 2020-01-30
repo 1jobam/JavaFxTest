@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane fx:controller="tutorial2.ExamController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <TableView fx:id="table" prefHeight="300.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="tabId" prefWidth="85.0" text="회원ID" />
+          <TableColumn fx:id="tabName" prefWidth="146.0" text="회원이름" />
+            <TableColumn fx:id="tabTel" prefWidth="117.0" text="회원전화" />
+            <TableColumn fx:id="tabAddr" prefWidth="231.0" text="회원주소" />
+        </columns>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </TableView>
+   </bottom>
+   <center>
+      <HBox prefHeight="50.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="memAdd" mnemonicParsing="false" prefWidth="70.0" text="추 가">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="memEdit" mnemonicParsing="false" prefWidth="70.0" text="수 정">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="memDel" mnemonicParsing="false" prefWidth="70.0" text="삭 제">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="memOk" mnemonicParsing="false" prefWidth="70.0" text="확 인">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="memCancel" mnemonicParsing="false" prefWidth="70.0" text="취 소">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="80.0" top="12.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="25.0" />
+         </BorderPane.margin>
+      </HBox>
+   </center>
+   <top>
+      <GridPane hgap="5.0" prefHeight="120.0" prefWidth="503.0" vgap="20.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="166.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="memId" promptText="회원 ID" GridPane.columnIndex="1" />
+            <TextField fx:id="memName" promptText="회원 이름" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="memTel" promptText="회원 전화" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="memAddr" promptText="회원 주소" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원 ID : " />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원이름 :" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원전화 :" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원주소 : " GridPane.rowIndex="3" />
+         </children>
+         <padding>
+            <Insets right="20.0" top="20.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </GridPane>
+   </top>
+</BorderPane>

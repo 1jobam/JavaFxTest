@@ -55,7 +55,22 @@ public class T09_ComboBoxTest extends Application {
 		
 		combo2.setValue("포도");
 		
+		combo2.valueProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				System.out.println("oldValue : " + oldValue);
+				System.out.println("newValue : " + newValue);
+				
+			}
+		});
+
+		
 		Button btn = new Button("확인");
+		
+		btn.setOnAction(e -> {
+			
+		});
 		
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			

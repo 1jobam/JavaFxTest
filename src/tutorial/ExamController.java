@@ -76,7 +76,7 @@ public class ExamController implements Initializable {
 		Alert alertConfirm = new Alert(AlertType.CONFIRMATION);
 		alertConfirm.setTitle("이름/성별/취미 입력 프로그램");
 		alertConfirm.setHeaderText("바이러스 발견 안내");
-		alertConfirm.setContentText("해당 프로그램에는 바이러스가 있습니다. 실행하시겠습니까?");
+		alertConfirm.setContentText("해당 프로그램에는 바이러스가 있을 수 있습니다. 실행하시겠습니까?");
 		
 		ButtonType confirmResult = alertConfirm.showAndWait().get();
 		
