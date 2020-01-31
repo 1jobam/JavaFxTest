@@ -1,4 +1,4 @@
-package tutorial;
+package kr.or.ddit.basic;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,16 +6,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Exam01 extends Application{
+public class T17_PagingTest extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("FxmlExam01.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PagingTest.fxml"));
+		Parent root = loader.load();
 		
 		Scene scene = new Scene(root);
-		primaryStage.setTitle("이름/성별/취미 입력 프로그램");
+		
+		primaryStage.setTitle("Paging Test");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 	
 	public static void main(String[] args) {

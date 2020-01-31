@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<Pane fx:controller="tutorial.ExamController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:controller="tutorial.Exam01Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="button" layoutX="14.0" layoutY="112.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="57.0" text="보  기" />
       <TextArea fx:id="txtarea" layoutX="14.0" layoutY="152.0" prefHeight="222.0" prefWidth="310.0" />

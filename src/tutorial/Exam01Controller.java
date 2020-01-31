@@ -15,7 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
-public class ExamController implements Initializable {
+public class Exam01Controller implements Initializable {
 
 	@FXML 
 	Button button;

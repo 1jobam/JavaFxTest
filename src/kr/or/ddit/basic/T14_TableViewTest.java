@@ -220,8 +220,16 @@ public class T14_TableViewTest extends Application {
 			txtKorName.setPromptText("한글 이름 입력");
 			txtAddr.requestFocus(); // 포커스 주기
 		});
+		Button btnTest2 = new Button("속성 연습2");
+		btnTest2.setOnAction(e -> {
+			txtKorName.setEditable(true);
+			txtEngName.setEditable(true);
+			
+			btnAdd.setDisable(false);
+			btnEdit.setDisable(false);
+		});
 		
-		vbox.getChildren().addAll(btnAdd, btnEdit, btnDel, btnTest1);
+		vbox.getChildren().addAll(btnAdd, btnEdit, btnDel, btnTest1, btnTest2);
 		
 		root.setCenter(table);
 		root.setRight(vbox);
