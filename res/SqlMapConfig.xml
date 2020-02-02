@@ -20,7 +20,7 @@
 	표시하기 위해서 alias를 지정할 수 있다.
 	형식) <typeAlias alias="alias명" type="클래스의 풀네임"/>
 	 -->
-	<typeAlias alias="examVO" type="tutorial3.ExamVO"/>
+	<typeAlias alias="examVO" type="tutorial4.vo.ExamVO"/>
 
 	<!-- 
 	DB와의 연결을 처리하는 부분
@@ -44,7 +44,7 @@
 	그 xml문서와 아래와 같이 연결하여 사용한다.
 	형식) <sqlMap resource="경로명/파일명.xml"/> 
 	-->
-	<sqlMap resource="tutorial3/Exam.xml"/>
+	<sqlMap resource="tutorial4/sql/exam.xml"/>
 </sqlMapConfig>
 
 

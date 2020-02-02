@@ -1,14 +1,13 @@
 package tutorial3;
 
-import java.io.Reader;
 import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
-
-import com.ibatis.common.resources.Resources;
-import com.ibatis.sqlmap.client.SqlMapClient;
-import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,28 +41,13 @@ public class ExamController implements Initializable {
 	@FXML
 	private TableColumn<ExamVO, String> bunji;
 
+	private String sql;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		try {
-			Charset charset = Charset.forName("UTF-8");
-			Resources.setCharset(charset);
-			Reader rd = Resources.getResourceAsReader("SqlMapConfig.xml");
-			SqlMapClient smc = SqlMapClientBuilder.buildSqlMapClient(rd);
-		
-			List<ExamVO> exlist = smc.queryForList("exam.getExamAll");
-			
-			ObservableList<ExamVO> data = FXCollections.observableArrayList(exlist);
-			
-			rd.close(); // Reader객체 닫기
-		
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-//		ObservableList<ExamVO> data = FXCollections.observableArrayList(new ExamVO("asd","asd","ASd","asd","ASd"));
-		
-//		table.setItems(data);
+
+		sql = "select * from ziptb";
+		ExamDB(sql);
 
 		zipcode.setCellValueFactory(new PropertyValueFactory<>("zipcode"));
 		sido.setCellValueFactory(new PropertyValueFactory<>("sido"));
@@ -71,23 +55,95 @@ public class ExamController implements Initializable {
 		dong.setCellValueFactory(new PropertyValueFactory<>("dong"));
 		bunji.setCellValueFactory(new PropertyValueFactory<>("bunji"));
 
-//		table.getColumns().addAll(zipcode, sido, gungu, dong, bunji);
-
 		// 콤보박스 수정
 		combo.getItems().addAll("동이름", "우편번호");
 		combo.setValue("동이름");
-		
-		 //버튼 동작
-		 btn.setOnAction(e -> {
-		 String nm = combo.getValue();
-		
-		 if (nm.equals("동이름")) {
-		
-		 } else if (nm.equals("우편번호")) {
-		
-		 }
-		
-		 });
 
+		// 버튼 동작
+		btn.setOnAction(e -> {
+			String nm = combo.getValue();
+
+			String text = txt.getText();
+
+			if (nm.equals("동이름")) {
+				sql = "select * from ziptb where dong like" + "'%" + text + "%'";
+				ExamDB(sql);
+			} else if (nm.equals("우편번호")) {
+				sql = "select * from ziptb where zipcode like" + "'%" + text + "%'";
+				ExamDB(sql);
+			}
+
+		});
+
+	}
+
+	private void ExamDB(String sql) {
+		Connection conn = null;
+		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		ObservableList<ExamVO> data = FXCollections.observableArrayList();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			String url = "jdbc:oracle:thin:@localhost:1521/xe";
+			String userId = "MY01";
+			String password = "orcle";
+
+			conn = DriverManager.getConnection(url, userId, password);
+
+			stmt = conn.createStatement();
+
+			String sqls = sql;
+
+			rs = stmt.executeQuery(sqls);
+
+			System.out.println("------------------------------------");
+			System.out.println("실핸한 쿼리 : " + sqls);
+			System.out.println("------------------------------------");
+			
+			while (rs.next()) {
+				String a = rs.getString("zipcode");
+				String b = rs.getString("sido");
+				String c = rs.getString("gugun");
+				String d = rs.getString("dong");
+				String e = rs.getString("bunji");
+
+				data.addAll(new ExamVO(a, b, c, d, e));
+			}
+
+			table.setItems(data);
+
+			System.out.println("출력 완료...");
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패!!!");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e2) {
+				}
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e2) {
+				}
+			if (stmt != null)
+				try {
+					stmt.close();
+				} catch (SQLException e2) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e2) {
+				}
+		}
 	}
 }

@@ -4,7 +4,7 @@ public class ExamVO {
 	
 	private String zipcode;
 	private String sido;
-	private String gungu;
+	private String gugun;
 	private String dong;
 	private String bunji;
 	
@@ -12,7 +12,7 @@ public class ExamVO {
 		super();
 		this.zipcode = zipcode;
 		this.sido = sido;
-		this.gungu = gungu;
+		this.gugun = gungu;
 		this.dong = dong;
 		this.bunji = bunji;
 	}
@@ -34,11 +34,11 @@ public class ExamVO {
 	}
 
 	public String getGungu() {
-		return gungu;
+		return gugun;
 	}
 
 	public void setGungu(String gungu) {
-		this.gungu = gungu;
+		this.gugun = gungu;
 	}
 
 	public String getDong() {
