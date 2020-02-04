@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.chart.*?>
 
-<AnchorPane fx:controller="tutorial5.Controller.ExamResultController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="inserts" layoutX="39.0" layoutY="155.0" mnemonicParsing="false" text="저장" />
       <Button fx:id="cancel" layoutX="108.0" layoutY="155.0" mnemonicParsing="false" text="취소" />
@@ -14,9 +14,9 @@
       <TextField fx:id="guk" layoutX="71.0" layoutY="57.0" prefHeight="23.0" prefWidth="115.0" />
       <TextField fx:id="su" layoutX="71.0" layoutY="89.0" prefHeight="23.0" prefWidth="115.0" />
       <TextField fx:id="eng" layoutX="71.0" layoutY="121.0" prefHeight="23.0" prefWidth="115.0" />
-      <Text fx:id="txtname" layoutX="27.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="이름" />
-      <Text fx:id="txtguk" layoutX="27.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="국어" />
-      <Text fx:id="txtsu" layoutX="27.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="수학" />
-      <Text fx:id="txteng" layoutX="27.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="영어" />
+      <Text layoutX="27.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="이름" />
+      <Text layoutX="27.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="국어" />
+      <Text layoutX="27.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="수학" />
+      <Text layoutX="27.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="영어" />
    </children>
 </AnchorPane>

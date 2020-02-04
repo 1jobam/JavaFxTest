@@ -120,6 +120,12 @@ public class T16_DialogTest extends Application {
 			Parent parent = null;
 			try {
 				parent = FXMLLoader.load(getClass().getResource("myDialog.fxml"));
+				
+				/*
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("myDialog.fxml"));
+					Parent parent2 = loader.load();
+					loader.getController();
+				 */
 			}catch(IOException ex) {
 				ex.printStackTrace();
 			}

@@ -89,8 +89,8 @@ public class ExamController implements Initializable {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			String url = "jdbc:oracle:thin:@localhost:1521/xe";
-			String userId = "MY01";
-			String password = "orcle";
+			String userId = "PC02";
+			String password = "java";
 
 			conn = DriverManager.getConnection(url, userId, password);
 

@@ -1,0 +1,10 @@
+.LANE {
+    -fx-border-style: solid none none solid;
+    -fx-border-width: 5;
+    -fx-border-color: red;
+}
+.LANE-LAST {
+    -fx-border-style: solid none solid solid;
+    -fx-border-width: 5;
+    -fx-border-color: red;
+}

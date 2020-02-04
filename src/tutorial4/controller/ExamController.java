@@ -54,8 +54,8 @@ public class ExamController implements Initializable {
 	private ResultSet res = null;
 	
 	private String url = "jdbc:oracle:thin:@localhost:1521/xe";
-	private String userId = "MY01";
-	private String password = "orcle";
+	private String userId = "PC02";
+	private String password = "java";
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

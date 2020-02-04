@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane fx:controller="tutorial5.Controller.ExamMainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutorial5.Controller.ExamMainController">
    <children>
       <TableView fx:id="table" prefHeight="350.0" prefWidth="600.0">
         <columns>
@@ -19,7 +18,7 @@
             <Insets />
          </opaqueInsets>
       </TableView>
-      <Button fx:id="insert" layoutX="212.0" layoutY="365.0" mnemonicParsing="false" text="추가" />
-      <Button fx:id="grape" layoutX="271.0" layoutY="365.0" mnemonicParsing="false" text="학생별 막대그래프" />
+      <Button fx:id="insert" layoutX="212.0" layoutY="365.0" mnemonicParsing="false" onAction="#insertstages" text="추가" />
+      <Button fx:id="grape" layoutX="271.0" layoutY="365.0" mnemonicParsing="false" onAction="#bargrape" text="학생별 막대그래프" />
    </children>
 </AnchorPane>
