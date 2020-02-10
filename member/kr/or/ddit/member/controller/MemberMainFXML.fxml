@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kr.or.ddit.member.controller.MemberMainController">
+   <children>
+      <Button layoutX="510.0" layoutY="71.0" mnemonicParsing="false" onAction="#end" text="종료하기" />
+	  <Pagination fx:id="paging" layoutX="1.0" layoutY="129.0" prefHeight="340.0" prefWidth="600.0" />
+      <TableView fx:id="table" layoutY="129.0" prefHeight="294.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="mem_id" prefWidth="102.0" text="회원ID" />
+          <TableColumn fx:id="mem_name" prefWidth="92.0" text="회원이름" />
+            <TableColumn fx:id="mem_tel" prefWidth="148.0" text="회원연락처" />
+            <TableColumn fx:id="mem_addr" prefWidth="257.0" text="회원주소" />
+        </columns>
+      </TableView>
+      <Button layoutX="27.0" layoutY="71.0" mnemonicParsing="false" onAction="#insertMember" text="회원등록" />
+      <Button layoutX="121.0" layoutY="71.0" mnemonicParsing="false" onAction="#deleteMember" text="회원삭제" />
+      <Button layoutX="214.0" layoutY="71.0" mnemonicParsing="false" onAction="#updateMember" text="회원수정" />
+      <Button layoutX="396.0" layoutY="71.0" mnemonicParsing="false" onAction="#selectAllMember" text="회원전체검색" />
+      <Button layoutX="307.0" layoutY="71.0" mnemonicParsing="false" onAction="#selectMember" text="회원검색" />
+      <Label contentDisplay="CENTER" layoutX="105.0" layoutY="14.0" prefHeight="49.0" prefWidth="404.0" text="회원관리 프로그램에 오신것을 환영 합니다" textAlignment="CENTER" textFill="#b22b2b">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

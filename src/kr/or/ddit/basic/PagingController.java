@@ -60,9 +60,7 @@ public class PagingController implements Initializable {
 		allTableData.add(new MemberVO("20", "홍길동20", "대전시 중구 대흥동 대덕인재개발원"));
 	
 		itemsForPage = 10; // 한페이지에 보여줄 항목 수 설정
-		int totPageCount = allTableData.size()%itemsForPage == 0 ?
-				 allTableData.size()/itemsForPage
-				:allTableData.size()/itemsForPage + 1;
+		int totPageCount = allTableData.size()%itemsForPage == 0 ? allTableData.size()/itemsForPage :allTableData.size()/itemsForPage + 1;
 		pagination.setPageCount(totPageCount); // 전체페이지 수 설정
 		
 		pagination.setPageFactory(new Callback<Integer, Node>() {
