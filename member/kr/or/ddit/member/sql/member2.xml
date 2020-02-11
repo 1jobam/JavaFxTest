@@ -42,7 +42,7 @@
 	 <!-- delete 연습 -->
 	 <delete id="deleteMember" parameterClass="String">
 	 	delete from mymember
-	 	where mem_id = #abcd#
+	 	where mem_id = #mem_id#
 	 </delete>
 	 
 	 <!-- select 연습 -->

@@ -119,7 +119,7 @@ public class MemberDaoImpl implements IMemberDao {
 	}
 
 	@Override
-	public int deleteMembeR(String memId) {
+	public int deleteMember(String memId) {
 		int cnt = 0;
 		
 		try {

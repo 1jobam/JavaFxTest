@@ -47,7 +47,7 @@ public interface IMemberDao {
 	 * @param memId 삭제할 회원ID
 	 * @return 작업성공 : 1, 작업실패 : 0
 	 */
-	public int deleteMembeR(String memId);
+	public int deleteMember(String memId);
 	
 	/**
 	 * MemberVO에 담긴 자료를 이용하여 회원을 검색하는 메서드 

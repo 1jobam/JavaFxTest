@@ -14,7 +14,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,6 +54,8 @@ public class MemberMainController implements Initializable{
 	
 	private ObservableList<MemberVO> data, currentPageData;
 	
+	private String memId;
+	
 	private Stage primaryStage;
 
 	public void setPrimaryStage(Stage primaryStage) {
@@ -59,6 +64,10 @@ public class MemberMainController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		tb();
+	}
+	
+	public void tb() {
 		data = FXCollections.observableArrayList();
 		
 		mem_id.setCellValueFactory(new PropertyValueFactory<>("mem_id"));
@@ -67,8 +76,10 @@ public class MemberMainController implements Initializable{
 		mem_addr.setCellValueFactory(new PropertyValueFactory<>("mem_addr"));
 		
 		table.setItems(data);
-		
-		itemsForPage = 5;
+	}
+	
+	public void reset() {
+		itemsForPage = 8;
 		int totPageCount = data.size() % itemsForPage == 0 ? data.size()/itemsForPage : data.size()/itemsForPage + 1;
 		paging.setPageCount(totPageCount);
 		paging.setMaxPageIndicatorCount(5);
@@ -83,11 +94,6 @@ public class MemberMainController implements Initializable{
 				return table;
 			}
 		});
-		
-		table.setOnMouseClicked(e -> {
-			System.out.println("test");
-			System.out.println(data.size());
-		});
 	}
 	
 	protected ObservableList<MemberVO> getTableViewData(int from, int to) {
@@ -98,7 +104,8 @@ public class MemberMainController implements Initializable{
 		int totSize = data.size();
 		for(int i = from; i <= to && i < totSize; i++) {
 		currentPageData.add(data.get(i));
-		}	
+		}
+		
 		return currentPageData;
 	}
 
@@ -107,8 +114,6 @@ public class MemberMainController implements Initializable{
 		Platform.exit();
 	}
 	
-
-
 	@FXML 
 	public void selectAllMember() {
 		memService = MemberServiceImpl.getInstance();
@@ -116,9 +121,9 @@ public class MemberMainController implements Initializable{
 		data = FXCollections.observableArrayList(memService.getAllMemberList());
 		
 		table.getItems().addAll(data);
+		
+		reset();
 	}
-
-	@FXML public void deleteMember(MouseEvent event) {}
 
 	@FXML public void insertMember(ActionEvent event) {
 		Stage register = new Stage(StageStyle.UTILITY);
@@ -144,15 +149,26 @@ public class MemberMainController implements Initializable{
 		Button regis = (Button) parent.lookup("#register");
 		regis.setOnAction(e -> {
 			memService = MemberServiceImpl.getInstance();
-
-			MemberVO mv = new MemberVO();
-			mv.setMem_id(id.getText());
-			mv.setMem_name(name.getText());
-			mv.setMem_tel(tel.getText());
-			mv.setMem_addr(addr.getText());
 			
+				String b = id.getText();
 			
-			register.close();
+				boolean a = memService.getMember(b);
+				
+				if(a) {
+					return;
+				}
+				
+				MemberVO mv = new MemberVO();
+				mv.setMem_id(id.getText());
+				mv.setMem_name(name.getText());
+				mv.setMem_tel(tel.getText());
+				mv.setMem_addr(addr.getText());
+				
+				memService.insertMember(mv);
+				
+				selectAllMember();
+				
+				register.close();
 		});
 		
 		Button ex = (Button) parent.lookup("#cancel");
@@ -167,10 +183,34 @@ public class MemberMainController implements Initializable{
 		register.setResizable(true);
 		register.show();
 	}
+	
+	@FXML 
+	public void deleteMember(ActionEvent event) {
+		memService = MemberServiceImpl.getInstance();
+		memId = table.getSelectionModel().getSelectedItem().getMem_id();
+		
+		Alert test = new Alert(AlertType.CONFIRMATION);
+		test.setTitle("사용자 삭제 확인 메시지");
+		test.setHeaderText(memId + "님의 삭제를 진행합니다");
+		test.setContentText("정말로 삭제하시겠습니까?");
+		
+		ButtonType result = test.showAndWait().get();
+		
+		if(result == ButtonType.OK) {
+			memService.deleteMember(memId);
+			selectAllMember();
+		}else if(result == ButtonType.CANCEL) {
+			return;
+		}
+		
+	}
 
 	@FXML public void updateMember(ActionEvent event) {}
 
 	@FXML public void selectMember(ActionEvent event) {}
+	
+
+	
 
 
 }
