@@ -9,13 +9,6 @@ import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
 
 public class MemberMain extends Application {
-	
-	// Service객체 변수를 선언한다.
-	private IMemberService memService;
-	
-	public MemberMain() {
-		memService = MemberServiceImpl.getInstance();
-	} 
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {

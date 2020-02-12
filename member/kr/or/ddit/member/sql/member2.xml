@@ -65,7 +65,7 @@
 	 	and mem_name = #mem_name#
 	 </isNotEmpty>
 	 <isNotEmpty property="mem_tel">
-	 	and mem_tel = #mem_tel#
+	 	and mem_tel like '%' || #mem_tel# || '%'
 	 </isNotEmpty>
 	<isNotEmpty property="mem_addr">
 		and mem_addr like '%' || #mem_addr# || '%'

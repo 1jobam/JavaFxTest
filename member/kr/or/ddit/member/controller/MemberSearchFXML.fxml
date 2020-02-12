@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="mem" layoutX="124.0" layoutY="39.0" />
+      <ComboBox fx:id="search" layoutX="14.0" layoutY="39.0" prefHeight="23.0" prefWidth="105.0" />
+      <Label alignment="CENTER" layoutX="78.0" layoutY="3.0" prefHeight="23.0" prefWidth="125.0" text="회원검색">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="sel" layoutX="78.0" layoutY="73.0" mnemonicParsing="false" text="검색" />
+      <Button fx:id="can" layoutX="153.0" layoutY="73.0" mnemonicParsing="false" text="취소" />
+   </children>
+</Pane>

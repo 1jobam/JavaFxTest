@@ -19,8 +19,8 @@
         </columns>
       </TableView>
       <Button layoutX="27.0" layoutY="71.0" mnemonicParsing="false" onAction="#insertMember" text="회원등록" />
-      <Button layoutX="121.0" layoutY="71.0" mnemonicParsing="false" onAction="#deleteMember" text="회원삭제" />
-      <Button layoutX="214.0" layoutY="71.0" mnemonicParsing="false" onAction="#updateMember" text="회원수정" />
+      <Button fx:id="dele" layoutX="121.0" layoutY="71.0" mnemonicParsing="false" onAction="#deleteMember" text="회원삭제" />
+      <Button fx:id="upda" layoutX="214.0" layoutY="71.0" mnemonicParsing="false" onAction="#updateMember" text="회원수정" />
       <Button layoutX="396.0" layoutY="71.0" mnemonicParsing="false" onAction="#selectAllMember" text="회원전체검색" />
       <Button layoutX="307.0" layoutY="71.0" mnemonicParsing="false" onAction="#selectMember" text="회원검색" />
       <Label contentDisplay="CENTER" layoutX="105.0" layoutY="14.0" prefHeight="49.0" prefWidth="404.0" text="회원관리 프로그램에 오신것을 환영 합니다" textAlignment="CENTER" textFill="#b22b2b">
