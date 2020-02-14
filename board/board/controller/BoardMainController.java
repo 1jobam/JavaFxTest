@@ -65,6 +65,8 @@ public class BoardMainController implements Initializable{
 	private BoardService boardservice;
 	
 	private Stage primaryStage;
+	
+	private int board_no;
 
 	@FXML 
 	Pagination pagination;
@@ -77,10 +79,10 @@ public class BoardMainController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		selectAllBoard();
-		hidden();
 		
 		table.setOnMouseClicked(e -> {
 			if(e.getClickCount() > 1) {
+				board_no = table.getSelectionModel().getSelectedItem().getBoard_no();
 				upda.setDisable(false);
 				dele.setDisable(false);
 			}
@@ -100,7 +102,39 @@ public class BoardMainController implements Initializable{
 		
 		table.setItems(data);;
 		
+		hidden();
+	
 	}
+	
+	public void reset() {
+		itemsForPage = 8;
+		int totPageCount = data.size() % itemsForPage == 0 ? data.size()/itemsForPage : data.size()/itemsForPage + 1;
+		pagination.setPageCount(totPageCount);
+		pagination.setMaxPageIndicatorCount(5);
+		pagination.setPageFactory(new Callback<Integer, Node>() {
+			
+			@Override
+			public Node call(Integer pageIndex) {
+				from = pageIndex * itemsForPage;
+				to = from + itemsForPage - 1;
+				table.setItems(getTableViewData(from, to));
+				
+				return table;
+			}
+		});
+	}
+	protected ObservableList<BoardVO> getTableViewData(int from, int to) {
+			
+			// 현재 페이지의 데이터 초기화
+			currentPageData = FXCollections.observableArrayList();
+			
+			int totSize = data.size();
+			for(int i = from; i <= to && i < totSize; i++) {
+			currentPageData.add(data.get(i));
+			}
+			
+			return currentPageData;
+		}
 	
 	public void hidden() {
 		upda.setDisable(true);
@@ -170,7 +204,7 @@ public class BoardMainController implements Initializable{
 		
 		Alert test = new Alert(AlertType.CONFIRMATION);
 		test.setTitle("게시글 삭제");
-		test.setHeaderText("게시글 삭제 진행");
+		test.setHeaderText(board_no + "번의 게시글 삭제 진행");
 		test.setContentText("게시글을 정말 삭제하시겠습니까?");
 		
 		ButtonType result = test.showAndWait().get();
@@ -189,37 +223,73 @@ public class BoardMainController implements Initializable{
 
 	@FXML 
 	public void update(MouseEvent event) {
-		boardservice = BoardServiceImpl.getInstance();
+
+		Stage updat = new Stage();
 		
+		updat.setTitle("수정화면");
+		updat.initModality(Modality.APPLICATION_MODAL);		
+		updat.initOwner(primaryStage);
 		
+		Parent parent = null;
+		try {
+			parent = FXMLLoader.load(getClass().getResource("BoardUpdateFXML.fxml"));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 		
-		BoardVO bv = new BoardVO();
+		TextField wri = (TextField) parent.lookup("#writer");
+		TextField tit = (TextField) parent.lookup("#title");
+		TextArea text = (TextArea) parent.lookup("#textarea");
 		
-		boardservice.updateBoard(bv);
+		wri.setText(table.getSelectionModel().getSelectedItem().getBoard_writer());
+		tit.setText(table.getSelectionModel().getSelectedItem().getBoard_title());
+		text.setText(table.getSelectionModel().getSelectedItem().getBoard_content());	
+
+		Button up = (Button) parent.lookup("#up");
+		up.setOnAction(e -> {
+			boardservice = BoardServiceImpl.getInstance();
+			String board_writer = wri.getText();
+			String board_title = tit.getText();
+			String board_content = text.getText(); 
+			
+			System.out.println(board_writer + board_title + board_content);
+			
+			BoardVO bv = new BoardVO();
+			bv.setBoard_writer(board_writer);
+			bv.setBoard_title(board_title);
+			bv.setBoard_content(board_content);
+			bv.setBoard_no(board_no);
+			
+			boardservice.updateBoard(bv);
+
+			updat.close();
+			selectAllBoard();
+		});
+		
+		Button can = (Button) parent.lookup("#can");
+		can.setOnAction(e -> {
+			updat.close();
+		});
+		
+		Scene scene = new Scene(parent);
+		updat.setScene(scene);
+		updat.setResizable(true);
+		updat.show();
+		
 	}
 
 	@FXML 
 	public void select(MouseEvent event) {
-		boardservice = BoardServiceImpl.getInstance();
-		BoardVO bv = new BoardVO();
-		
-		int board_no = Integer.parseInt(tex.getText());
-		
-		System.out.println(board_no);
-		
-		bv.setBoard_no(board_no);
-		
 		if(tex.getText().isEmpty()) {
-			ObservableList<BoardVO> da = FXCollections.observableArrayList(boardservice.getSearchBoard(bv));
-			table.setItems(da);			
-		}else {
 			selectAllBoard();
+		}else {
+			boardservice = BoardServiceImpl.getInstance();
+			BoardVO bv = new BoardVO();
+			int board_no = Integer.parseInt(tex.getText());
+			bv.setBoard_no(board_no);
+			ObservableList<BoardVO> da = FXCollections.observableArrayList(boardservice.getSearchBoard(bv));
+			table.setItems(da);
 		}
-		
-		
+
 	}
-	
-	
-
-
 }
