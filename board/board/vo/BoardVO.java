@@ -4,10 +4,15 @@ import java.sql.Date;
 
 public class BoardVO {
 	
+	//게시판 번호 int값 활용
 	private int board_no;
+	//게시판 번호 String값 활용
 	private String board_title;
+	//게시판 번호 String값 활용
 	private String board_writer;
+	//게시판 번호 Date값 활용 //자바 (SQL)
 	private Date board_date;
+	//게시판 번호 String값 활용
 	private String board_content;
 	
 	public int getBoard_no() {

@@ -78,7 +78,13 @@ public class BoardMainController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		selectAllBoard();
+		
+		itemsForPage = 3;
+		int totPageCount = data.size() % itemsForPage == 0 ? data.size()/itemsForPage : data.size()/itemsForPage + 1;
+		pagination.setPageCount(totPageCount);
+		pagination.setMaxPageIndicatorCount(5);
 		
 		table.setOnMouseClicked(e -> {
 			if(e.getClickCount() > 1) {
@@ -103,38 +109,35 @@ public class BoardMainController implements Initializable{
 		table.setItems(data);;
 		
 		hidden();
-	
+		
+		reset();
 	}
 	
 	public void reset() {
-		itemsForPage = 8;
-		int totPageCount = data.size() % itemsForPage == 0 ? data.size()/itemsForPage : data.size()/itemsForPage + 1;
-		pagination.setPageCount(totPageCount);
-		pagination.setMaxPageIndicatorCount(5);
-		pagination.setPageFactory(new Callback<Integer, Node>() {
+		pagination.setPageFactory((Integer pageIndex)->{
 			
-			@Override
-			public Node call(Integer pageIndex) {
-				from = pageIndex * itemsForPage;
-				to = from + itemsForPage - 1;
-				table.setItems(getTableViewData(from, to));
-				
-				return table;
-			}
+			from = pageIndex * itemsForPage;
+			to = from + itemsForPage - 1;
+			table.setItems(getTableViewData(from, to));
+		
+			return table;
 		});
+		
 	}
-	protected ObservableList<BoardVO> getTableViewData(int from, int to) {
-			
-			// 현재 페이지의 데이터 초기화
-			currentPageData = FXCollections.observableArrayList();
-			
-			int totSize = data.size();
-			for(int i = from; i <= to && i < totSize; i++) {
-			currentPageData.add(data.get(i));
-			}
-			
-			return currentPageData;
+	
+	private ObservableList<BoardVO> getTableViewData(int from, int to) {
+		
+		// 현재 페이지의 데이터 초기화
+		currentPageData = FXCollections.observableArrayList();
+		
+		int totSize = data.size();
+		for(int i = from; i <= to && i < totSize; i++) {
+		currentPageData.add(data.get(i));
 		}
+		
+		return currentPageData;
+	}
+	
 	
 	public void hidden() {
 		upda.setDisable(true);
@@ -180,6 +183,8 @@ public class BoardMainController implements Initializable{
 			reg.close();
 			
 			selectAllBoard();
+			
+			reset();
 		});
 		
 		
